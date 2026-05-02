@@ -3,12 +3,15 @@ using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
 using Unity.VisualScripting;
+using ForestBackgroundsPixelArt;
+using System.Collections;
 
 public class Mainmenu : MonoBehaviour
 {
     private const string MusicVolumePrefKey = "MusicVolume";
     [SerializeField] private GameObject optionsPanel;
     [SerializeField] private PlayerHealth playerHealth;
+    [SerializeField] private PlayerAttack playerAttack;
     [Header("Audio")]
     [SerializeField] private Slider musicVolumeSlider;
     [SerializeField] private Animator anim;
@@ -89,16 +92,15 @@ public class Mainmenu : MonoBehaviour
     public void OpenOptions()
     {
         PlayButtonClickSfx();
-        anim.SetTrigger("Movee");
+        playerAttack.enabled = false;
+        anim.SetBool("Movee", true);
         optionsPanel.SetActive(true);
         Cursor.visible = true;
     }
 
     public void CloseOptions()
     {
-        PlayButtonClickSfx();
-        optionsPanel.SetActive(false);
-        Cursor.visible = false;
+        StartCoroutine(delay());
     }
 
     public void SetVolume(float volume)
@@ -143,5 +145,15 @@ public class Mainmenu : MonoBehaviour
         }
 
         AudioSource.PlayClipAtPoint(trainWhistleClip, Vector3.zero);
+    }
+
+    IEnumerator delay()
+    {
+        PlayButtonClickSfx();
+        anim.SetBool("Movee", false);
+        optionsPanel.SetActive(false);
+        Cursor.visible = false;
+        yield return new WaitForSeconds(0.15f);
+        playerAttack.enabled = true;
     }
 }

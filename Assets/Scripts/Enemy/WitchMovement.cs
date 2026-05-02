@@ -108,6 +108,7 @@ public class WitchMovement : MonoBehaviour
 
         if (anim != null)
         {
+            anim.SetBool("isAttacking", true);
             anim.SetBool("isWalking", false);
         }
     }

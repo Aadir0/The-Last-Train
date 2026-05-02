@@ -4,7 +4,7 @@ public class SkeletonAttack : MonoBehaviour
 {
     [Header("Attack Settings")]
     [SerializeField] private float attackRange = 1.5f;
-    [SerializeField] private float attackCooldown = 2f;
+    public float attackCooldown = 2.5f;
     [SerializeField] private float attackDuration = 0.8f;
     [SerializeField] private int damage = 1;
     private Transform player;

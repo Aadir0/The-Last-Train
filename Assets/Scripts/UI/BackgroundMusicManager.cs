@@ -34,7 +34,7 @@ public class BackgroundMusicManager : MonoBehaviour
             audioSource = GetComponent<AudioSource>();
         }
 
-        audioSource.volume = Mathf.Clamp01(volume);
+        audioSource.volume = Mathf.Clamp(volume, 0f, 1f);
     }
 
     public float GetVolume()

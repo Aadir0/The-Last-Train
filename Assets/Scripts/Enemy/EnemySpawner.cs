@@ -4,9 +4,9 @@ public class EnemySpawner : MonoBehaviour
 {
     public GameObject enemyPrefab;
     public Transform[] spawnPoints;
-
     public float spawnRate = 2f;
     public int maxEnemies = 7;
+    public SkeletonAttack skeletonAttack;
 
     private float timer;
 
@@ -28,7 +28,6 @@ public class EnemySpawner : MonoBehaviour
 
     void TrySpawnEnemy()
     {
-        // Count enemies using tag (NO other scripts needed)
         int currentEnemies = GameObject.FindGameObjectsWithTag("Enemy").Length;
 
         if (currentEnemies >= maxEnemies)
@@ -51,5 +50,7 @@ public class EnemySpawner : MonoBehaviour
     {
         spawnRate -= 0.1f;
         spawnRate = Mathf.Clamp(spawnRate, 4f, 6f);
+        skeletonAttack.attackCooldown -= 0.1f;
+        skeletonAttack.attackCooldown = Mathf.Clamp(skeletonAttack.attackCooldown, 1.5f, 2.5f);
     }
 }

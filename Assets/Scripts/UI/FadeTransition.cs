@@ -75,17 +75,6 @@ public class FadeTransition : MonoBehaviour
             fadePanel.color = panelColor;
         }
 
-        StartCoroutine(LoadScene());
-    }
-
-    private IEnumerator LoadScene()
-    {
-        LoadNextScene();
-        yield return null;
-    }
-
-    private void LoadNextScene()
-    {
         SceneManager.LoadScene(sceneBuildIndex);
     }
 }
