@@ -49,6 +49,7 @@ public class Mainmenu : MonoBehaviour
             if(playerHealth != null && playerHealth.dead == true) return;
             
             pauseMenu.SetActive(true);
+            playerAttack.enabled = false;
             Time.timeScale = 0f;
             Cursor.visible = true;
         }
@@ -87,6 +88,7 @@ public class Mainmenu : MonoBehaviour
         Time.timeScale = 1f;
         pauseMenu.SetActive(false);
         Cursor.visible = false;
+        playerAttack.enabled = true;
     }
 
     public void OpenOptions()

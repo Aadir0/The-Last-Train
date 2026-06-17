@@ -1,10 +1,11 @@
-using UnityEditor.Tilemaps;
 using UnityEngine;
 
 public class PlayerMovement : MonoBehaviour
 {
     [SerializeField] private float speed = 5f;
     [SerializeField] private float jumpForce = 10f;
+    [SerializeField] private float horizontalForce = 3f;
+    [SerializeField] private float constantHorForce = 0.3f;
     [SerializeField] private Rigidbody2D rb;
     [SerializeField] private Animator anim;
     [Header("Audio")]
@@ -48,6 +49,18 @@ public class PlayerMovement : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.Space) && isGrounded)
         {
             Jump();
+        }
+    }
+
+    void FixedUpdate()
+    {
+        if (isGrounded == false)
+        {
+            rb.AddForce(new Vector2(-horizontalForce, 0f), ForceMode2D.Impulse);
+        }
+        else
+        {
+            rb.AddForce(new Vector2(-constantHorForce, 0f), ForceMode2D.Force);
         }
     }
 
